@@ -11,4 +11,4 @@ express()
 - les midlleWare de gestion d'erreur 
 il existe des middlewares qui existent deja en express
 ce sont : morgan : npm install morgan --save-dev ( il permet lui aussi de laogger l'url des requetes entrantes vers le serveur)
-app.use(morgan('dev')) : 'dev' permet de preciser la precision des messages de log 
+app.use(morgan('dev')) : 'dev' permet de preciser la precision des messages de log cc
