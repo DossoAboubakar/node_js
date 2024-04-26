@@ -1,0 +1,14 @@
+nodemon app.js // pour executer le code de app.js
+npm run start // recommander pour executer les script
+les resoucres pour le cours : https://angularsenior.fr/ressources-apprendre-nodejs-sql
+les middlewares // ils vont intercepter les requettes entrantes et sortantes 
+on les  utilises pour :
+- Les Mdwre d'application : directement relier a l'instance de express grace a la methode use il  sera executer a chaque fois
+qu'une requette sera envoyer.
+- les Mdwre de routeur qui fonctionne directement au niveau du routeur de express il permet de organiser les routes ; il\
+se branche avec express.router() et non pas directement directement a l'instance de express
+express()
+- les midlleWare de gestion d'erreur 
+il existe des middlewares qui existent deja en express
+ce sont : morgan : npm install morgan --save-dev ( il permet lui aussi de laogger l'url des requetes entrantes vers le serveur)
+app.use(morgan('dev')) : 'dev' permet de preciser la precision des messages de log 
