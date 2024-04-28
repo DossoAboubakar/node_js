@@ -1,0 +1,29 @@
+/////////////////////////////////////////////// le code Itry.js initial/////////////////////////////////////////////////////////
+app.get('/',(req,res) => res.send(`nous avons ${pokemons.length} pokemons actuellement`) )
+app.get('/api/Pokemons',(req,res) => {
+    const message = 'La liste des pokemons a bien ete retourner'
+    res.json(succes(message,pokemons))
+})
+app.post('/api/pokemons/:id', (req,res)=>{
+    id = +req.params.id
+    message = `le pokemon ${id} a bien ete ajouter a la collection`
+    createdPokemon = { ...req.body , ... {id:id , createdDate:new Date()}}
+    pokemons.push(createdPokemon)
+    res.json(succes(message,createdPokemon))
+})
+app.put('/api/pokemons/:id',(req,res)=>{
+    id = +req.params.id
+    modifiedPokemon = {...req.body , id}
+    message = `le pokemon ${id}  qui  est ${modifiedPokemon.name} a bien ete mis a jour`
+    pokemons.map( pokemon => {
+       return pokemon.id==id ? modifiedPokemon : pokemon
+    })
+    res.json(succes(message,modifiedPokemon))
+})
+app.delete('/api/pokemons/:id', (req,res)=>{
+    id= +req.params.id
+    pokemonDeleted = pokemons.find(pokemon => pokemon.id==id)
+    message = `le pokemon ${pokemonDeleted.name} a ete supprimer`
+    conservedPokemons = pokemons.filter(pokemon => pokemon.id !== id)
+    res.json(succes(message,conservedPokemons))
+})

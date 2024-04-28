@@ -1,0 +1,45 @@
+const express = require('express')
+const {Sequelize,DataTypes} =require('sequelize')
+const pokemonModel = require('./src/models/pokemon')
+const pokemons = require('./src/db/mock-pokemon')
+const app = express()
+const bodyParser = require('body-parser')
+const morgan = require('morgan')
+const favicon = require('serve-favicon')
+const port = 4000 
+
+
+const sequelize = new Sequelize({
+    database: 'pokedex',
+    dialect: 'mysql',
+    username: 'root',
+    password: 'root',
+    host: 'localhost',
+  });
+  // Vérification de la connexion à la base de données
+  const Pokemon = pokemonModel(sequelize, DataTypes);
+  try {
+      sequelize.authenticate();
+      console.log('Connection has been established successfully.');
+    } catch (error) {
+      console.error('Unable to connect to the database:', error);
+    };
+  
+    
+  //Fonction pour initialiser la base de données
+       sequelize.sync()
+          .then(() => {
+            console.log('Synchronisation de la base de données pokedex resussi');
+          })
+          .catch(error => {
+            console.error('Erreur lors de la synchronisation de la base de données:');
+          });
+  
+
+
+app.use(favicon(__dirname + '/favicon.ico'))
+app.use(morgan('dev'))
+app.use(bodyParser.json())
+
+
+app.listen(port , _=> console.log(` nous sommes sur le port ${port}`) )
