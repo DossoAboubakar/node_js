@@ -1,0 +1,34 @@
+pour creer un depot distant git :
+- aller creer le depot sur gitLab ou gitHub
+- taper git remote add https//:.....
+- creer ses branches via git branch -M nom_de_branc ou ( git branch pour les branches classiques)
+- lier une branch comme branch origin du projet via git push --set-upstream origin main 
+- l'erreur 404 : la page n'a pas ete trouver
+- l'erreur 503: la video google n'est pas encore disponible
+- il y'a plus de 70 codes de statut http 
+- les codes de status peuvent etre classer en 5 grandes categories :
+    1xx: l'information ( il donne des informations au niveau du protocole de transfert lui meme. ce sont des donnees ...aucune donnes n'est reelement transmises entre le client et le serveur)
+    2xx:  la requette accpeter traiter avec succes
+    3xx: la redirection : le client veut acceder a une ressource qui  a ete deplacer  
+    4xx: le client s'est planter ( erreur d'acces)
+    5xx: erreur de serveur ( erreur lie au serveur lui meme)
+    -  il faut toujours fournir des reponses d'erreur avec des codes de statut les plus connus afin de permettre aux utilisateurs de l'api de le comprendre facilement 
+    - les codes a retenir : 
+        - 200:succes
+        - 400: le client a mal utiliser l'api
+        - 500: lorsque c'est la faute du serveur 
+        - 404 : le client qui demande une ressource indisponible en bd
+        - 401 : les clients qui ne sont pas auhtentifier a une ressource ( n'ont pas autoriser a cette ressource)
+        - 403 : les clients autorise mais qui peuvent pas acceder a une ressource non autoriser.
+- on distingue deux categories d'erreur :  les erreurs techniques et les erreurs metiers 
+- les erreurs techniques ce sont des erreurs qui sont du au dysfonctionnemt de notre api ou lies requetes des utilisateurs
+- les erreurs metiers sont des erreurs qui peuvent subvenir par exemple lorsque le user fournis les informations comme il se faut mais souvent pas dans le bon format
+///////////LES VALIDATEURS////////////////////////////////
+- Les contraintes et les validateurs 
+- Les contraintes : ils sont defini sur notre model cote bd: peu importe , une requette sera envoye a notre base de donnees
+- Les validateurs : ils sont defini cote code : s'ils echouent alors aucune requette ne sera envoyer a la bd
+cela est important car  il permet d'eviter d'interroger inutilement notre BD.
+- les validateurs ne sont prises en charges que pour les requtes UPDATE(PUT) ET CREATE(PUSH)
+- le validateurs allowNull est a la fois un validateurs coté code et une contraintes coté BD
+il n'empeche pas par contre le faite que l'utilisateurs saisissent " ou 0 dans les champs concerné
+pour cela il faut uitliser un autre validateur comme notNull
