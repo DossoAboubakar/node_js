@@ -1,5 +1,7 @@
-const { ValidationError } = require("sequelize");
+const { ValidationError,UniqueConstraintError } = require("sequelize");
 const models = require("../models/index");
+const  auth = require('../auth/auth')
+
 
 ///PAS TRES PRATIQUE
 // module.exports = (app) => {
@@ -34,7 +36,7 @@ const models = require("../models/index");
 
 /// CODE PRECEDENT FACTORISER AVEC L'AJOUT DE return a la ligne 40 et la suppression d'un bloc catch
 module.exports = (app) => {
-  app.put("/api/pokemons:id", (req, res) => {
+  app.put("/api/pokemons:id",auth, (req, res) => {
     const id = req.params.id;
     models.Pokemon.update(req.body, {
       where: { id: id },
@@ -55,6 +57,9 @@ module.exports = (app) => {
               .status(400)
               .json({ message: error.message, data: error });
           }
+          if(error instanceof UniqueConstraintError){
+            return res.status(400).json({message:error.message, data:error})
+        }
 
           const message =
             "le pokemon n'a pas pu etre modifie.Ressayer dans quelques instants.";

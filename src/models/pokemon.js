@@ -9,7 +9,7 @@ const validTypes = [
   "Electrik",
   "Fée",
 ];
-
+//require
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     "Pokemon",
@@ -83,9 +83,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         get() {
           return this.getDataValue("types").split(",");
+          //retourne les donnee au bon format venant de la BD ( Attention : ce n'est pas le
+          // comportement exact des getteurs et setteurs, juste que cela est fourmi par sequelize
+          // pour faciliter l'envoi et la reception des valeurs au serveur BD)
         },
         set(types) {
-          this.setDataValue("types", types.join());
+          this.setDataValue("types", types.join());//envoi les donnees a la BD sous sous forme de chaine de character
         },
         validate: {
           isTypesValid(value) {

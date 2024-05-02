@@ -32,3 +32,15 @@ cela est important car  il permet d'eviter d'interroger inutilement notre BD.
 - le validateurs allowNull est a la fois un validateurs coté code et une contraintes coté BD
 il n'empeche pas par contre le faite que l'utilisateurs saisissent " ou 0 dans les champs concerné
 pour cela il faut uitliser un autre validateur comme notNull
+- On voit bien qu'on pourrait se dire que seules les validateurs cotes code suiffisent car ils vont meme bloquer d'envoyer des requetes inutiles au serveur
+mais alors a quoi  sert les contraintes cotes code .
+les contraintes permet de gerer l'integrite des donnees ( coté base de donnée) lorsque on ne peut pas le faire facilement avec sequelize cote code
+par exemple : si on veut s'assurer de l'uniciter des pokemoons dans la BD , si on doit faire ca coté code , cela pourrait etre compliqué car on allait 
+a chaque fois charger tout les pokemons dans la base de donnee et ensuite effectuer des traitement pour comparer les valeurs afin de voir si la nouvelle valeur a inserer 
+n'a pas ete prise pas( ca a l'air complique) c'est pourquoi il preferait de le faire coté BD
+- REMARQUE : sequelize permet a la fois de definir les contraintes et les validateurs ....il faut juste savoir que les contraintes sont hors de la partie
+Validate . tandisque les autres le sont ( DANS LE MODEL POKEMON.js)
+- seules CREATE ET UPDATE sont concerner par la contrainte : unique ( contrainte d'unicité)
+- il faut toujours crypter les donnnees que nous mettons dans la base de donne . pour cela on peut installer un module qui nous permet de le faire 
+il s'agit en effet de bcrypt. ( npm install bcrypt --save)
+-JWT : Json Web Token 

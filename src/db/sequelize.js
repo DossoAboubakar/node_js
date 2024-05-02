@@ -1,4 +1,6 @@
 const pokemonModel = require('../models/pokemon');
+const userModel = require('../models/user')
+const bcrypt = require('bcrypt')
 const { Sequelize, DataTypes } = require('sequelize');
 const pokemons = require('./mock-pokemon');
 
@@ -11,6 +13,7 @@ const sequelize = new Sequelize({
 });
 // Vérification de la connexion à la base de données
 const Pokemon = pokemonModel(sequelize, DataTypes);
+const User = userModel(sequelize,DataTypes)
 try {
     sequelize.authenticate();
     console.log('Connection has been established successfully.');
@@ -32,12 +35,20 @@ const initDb = () => {
       })
       .then(pokemon => console.log(pokemon.toJSON()))
     })
+    //le 10 dans hash('...') est le temps de hashage
+    bcrypt.hash('pikatchu',10).then( hash=>{
+      User.create({
+        username: 'pikatchu',
+        password:hash
+       }).then(user=>console.log(user.toJSON()))
+    }
+    )
   })
 }
   
 //Export des fonctions ou objets nécessaires à l'extérieur du module
 module.exports = {
-  Pokemon,initDb
+  Pokemon,User,initDb
 };
 
 // Appel de la fonction d'initialisation de la base de données

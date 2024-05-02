@@ -1,4 +1,5 @@
 const models = require("../models/index");
+const  auth = require('../auth/auth')
 
 // module.exports = (app) => app.delete('/api/pokemons:id',(req,res) => {
 //     const id = +req.params.id
@@ -11,7 +12,7 @@ const models = require("../models/index");
 //     })
 ///REECRITURE DU CODE PRECDENT
 module.exports = (app) =>
-  app.delete("/api/pokemons/:id", (req, res) => {
+  app.delete("/api/pokemons/:id", auth ,(req, res) => {
     const id = req.params.id;
     models.Pokemon.findByPk(id).then((pokemon) => {
       if (pokemon === null) {
