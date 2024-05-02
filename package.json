@@ -4,7 +4,8 @@
   "description": "An awesome API Rest to handle some pokemon",
   "main": "Itry.js",
   "scripts": {
-    "start": "nodemon Itry.js"
+    "start": "NODE_ENV = production node Itry.js" ,
+    "dev": "NODE_ENV = developement nodemon Itry.js"
   },
   "author": "Dosso",
   "license": "ISC",

@@ -44,3 +44,25 @@ Validate . tandisque les autres le sont ( DANS LE MODEL POKEMON.js)
 - il faut toujours crypter les donnnees que nous mettons dans la base de donne . pour cela on peut installer un module qui nous permet de le faire 
 il s'agit en effet de bcrypt. ( npm install bcrypt --save)
 -JWT : Json Web Token 
+/////////////////////////////// HERBERGER NOTRE APPLICATION EN LIGNE:DEPLOIEMENT EN PRODUCTION/////////////////////////////////////
+1-CREER LE PROJET SUR LA PLATEFORME HEROKU
+2-PREPARER LE PROJET EN LOCAL POUR LE DEPLOIMENT 
+3-DEPLOYER L'API REST COMPLETE
+REMARQUE : ON DOIT HEBERGER UN SERVER WEB ECRIT EN NODE.JS , UNE API REST REALISEE AVEC EXPRESS,UNE BD AVEC MYSQL
+////// ETAPES DE DEPLOIEMENT//////
+1-remplacer dans le fichier Itry.js le port utilser par port = 4000||process.env.PORT : comme lorsque on sera en production , heruku va lui meme mettre le numero de port dans  'process.env.PORT'
+2-remplacer dans le fichier package.json
+"scripts": {
+    "start": "nodemon Itry.js" ,
+  },
+  par "scripts": {
+    "start": "node Itry.js" ,
+    "dev": "nodemon Itry.js"
+  },
+  cela permettra de lancer le script "dev" en developpement et "start" en production
+3-deployer maitenant express.js 
+on ajoute dans le script precedent pour avoir ceci  "scripts": {
+    "start": " NODE_ENV = production node Itry.js" ,
+    "dev": " NODE_ENV = developement nodemon Itry.js"
+  },
+  4-Ne pas deployer les dependances de developement
