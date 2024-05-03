@@ -4,12 +4,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const favicon = require("serve-favicon");
+const cors = require('cors')
 const port = process.env.PORT || 4000; // process est un objet global donc pas besoin de l'importer. c'est lui qui contient les variables d'environnement
 sql.initDb();
 
 app.use(favicon(__dirname + "/favicon.ico")); //Ici in utilise que des api avec app.use() mais on en cree pas 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cors())//implementation de la methode CORS(Cross Origin Ressources Source) il auhtoriser par defaut toute les origine , toute les requetes http de base etc...
 app.get('/',(req,res)=>{
     res.json('Hello,Heroku ! 👋')
 })

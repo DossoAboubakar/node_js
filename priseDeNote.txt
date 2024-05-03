@@ -65,4 +65,14 @@ on ajoute dans le script precedent pour avoir ceci  "scripts": {
     "start": " NODE_ENV = production node Itry.js" ,
     "dev": " NODE_ENV = developement nodemon Itry.js"
   },
+  dans notre cas on ne le ferra pas ...car nous n'allons pas deployer l'application pour le moment
   4-Ne pas deployer les dependances de developement
+
+
+//////////////////////////////// UTILISER L'API DEPUIS UNE APPLICATION /////////////////////////
+- les requetes get et post sont les requetes simples 
+- les requetes put , delete , et update sont des requetes complexes.
+- pour autoriser les applications a utiliser  notre api ,  il faut implementer la norme cors dans l'api
+- cette maniere d'implementer depend du language de programation . mais pour node , voici comment il faut faire:
+  - il faut d'abord installer le packet cors via la commaande :  npm install cors --save
+  - ce packet s'utilise comme un middleware
